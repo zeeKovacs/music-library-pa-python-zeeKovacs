@@ -1,3 +1,5 @@
+import file_handling
+
 def get_albums_by_genre(albums, genre):
     """
     Get albums by genre

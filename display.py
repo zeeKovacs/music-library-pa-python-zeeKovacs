@@ -1,3 +1,5 @@
+import file_handling
+
 def print_album_info(album):
     artist_index = 0
     name_index = 1
@@ -20,3 +22,5 @@ def print_command_result(message):
     vertical_spacing = 2
 
     print(vertical_spacing * '\n' + message)
+
+print_albums_list(file_handling.import_data(filename='albums_data.txt'))

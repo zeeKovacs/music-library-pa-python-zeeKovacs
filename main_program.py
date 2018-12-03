@@ -1,7 +1,5 @@
-"""
-The main program should use functions from music_reports and display modules
-"""
-
+import music_reports
+import display
 
 def delete_album_by_artist_and_album_name(albums, artist, album_name):
     """
@@ -25,6 +23,7 @@ def main():
     You should create new functions and call them from main whenever it can
     make the code cleaner
     """
+    display.print_program_menu(['Not implemented yet.', 'Not implemented yet.', 'Not implemented yet.', 'Not implemented yet.'])
 
 
 if __name__ == '__main__':

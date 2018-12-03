@@ -72,7 +72,8 @@ def get_last_oldest_of_genre(albums, genre):
     for lines in filtered:
         if int(lines[2]) < min:
             min = int(lines[2])
-    return [line for line in filtered if str(min) in line]
+    filtered_year = [line for line in filtered if str(min) in line]
+    return filtered_year[0]
 
 
 def get_total_albums_length(albums):

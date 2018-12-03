@@ -4,7 +4,10 @@ def import_data(filename='albums_data.txt'):
 
 
 def export_data(albums, filename='albums_data.txt', mode='a'):
-    if mode != 'w' or mode != 'a':
-       raise ValueError('Wrong write mode')
     with open(filename, mode) as f:
-        [f.write(','.join(lines)) for lines in albums]
+        if mode == 'w' or mode =='a':
+            for lines in albums:
+                f.write(', '.join(lines))
+                f.write('\n')
+        else:
+            raise ValueError('Wrong write mode')

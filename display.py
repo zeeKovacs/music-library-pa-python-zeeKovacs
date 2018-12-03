@@ -22,5 +22,3 @@ def print_command_result(message):
     vertical_spacing = 2
 
     print(vertical_spacing * '\n' + message)
-
-print_albums_list(file_handling.import_data(filename='albums_data.txt'))

@@ -10,8 +10,7 @@ def get_albums_by_genre(albums, genre):
     :returns: all albums of given genre
     :rtype: list
     """
-    albums_by_genre = [lines for lines in albums if genre == lines[3]]
-    return albums_by_genre
+    return [lines for lines in albums if genre == lines[3]]
 
 
 def get_genre_stats(albums):
@@ -23,7 +22,12 @@ def get_genre_stats(albums):
     :returns: genre stats
     :rtype: dict
     """
-
+    stats = {}
+    for lines in albums:
+        if lines[3] not in stats:
+            stats.update({lines[3]:0})    
+        stats[lines[3]] += 1
+    return stats
 
 def get_longest_album(albums):
     """
@@ -46,6 +50,12 @@ def get_last_oldest(albums):
     :returns: last oldest album
     :rtype: list
     """
+    min = 3000
+    for lines in albums:
+        if int(lines[2]) < min:
+            min = int(lines[2])
+    oldest = [lines for lines in albums if str(min) in lines]
+    return oldest[-1]
 
 
 def get_last_oldest_of_genre(albums, genre):
@@ -57,6 +67,12 @@ def get_last_oldest_of_genre(albums, genre):
     :returns: last oldest album in genre
     :rtype: list
     """
+    filtered = [(lines) for lines in albums if genre in lines]
+    min = 3000
+    for lines in filtered:
+        if int(lines[2]) < min:
+            min = int(lines[2])
+    return [line for line in filtered if str(min) in line]
 
 
 def get_total_albums_length(albums):

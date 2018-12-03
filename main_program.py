@@ -13,9 +13,7 @@ def delete_album_by_artist_and_album_name(albums, artist, album_name):
     :returns: updated albums' list
     :rtype: list
     """
-    for line in albums:
-        if artist and album_name in line:
-            albums.remove(line)
+    albums = [(line) for line in albums if artist and album_name not in line]
     file_handling.export_data(albums, filename='albums_data.txt', mode='w')
     pass
 
@@ -31,7 +29,8 @@ def main():
     make the code cleaner
     """
     albums = file_handling.import_data(filename='albums_data.txt')
-    display.print_program_menu(['Delete Album by Artist and Album', 'Albums by Genre', 'Not implemented yet.', 'Not implemented yet.'])
+    print(albums)
+    display.print_program_menu(['Delete Album by Artist and Album', 'Albums by Genre', 'Genre Stats', 'Last Oldest Album', 'Oldest of Genre'])
     while True:
         try:
             option = input('Choose an option: ')
@@ -40,9 +39,11 @@ def main():
             if option == '1':
                 display.print_albums_list(music_reports.get_albums_by_genre(albums, input('Genre: ')))
             if option == '2':
-                pass
+                print(music_reports.get_genre_stats(albums))
             if option == '3':
-                pass
+                print(music_reports.get_last_oldest(albums))
+            if option == '4':
+                print(music_reports.get_last_oldest_of_genre(albums, input('Genre: ')))
             else:
                 raise KeyError
         except KeyError:

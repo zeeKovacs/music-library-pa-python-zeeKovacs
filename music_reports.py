@@ -1,29 +1,12 @@
 import file_handling
 
 def get_albums_by_genre(albums, genre):
-    """
-    Get albums by genre
-
-    :param list albums: albums' data
-    :param str genre: genre to filter by
-
-    :returns: all albums of given genre
-    :rtype: list
-    """
     if any(genre in line for line in albums):
         return [lines for lines in albums if genre == lines[3]]
     raise ValueError('Wrong genre')
 
 
 def get_genre_stats(albums):
-    """
-    Get albums' statistics showing how many albums are in each genre
-    Example: { 'pop': 2, 'hard rock': 3, 'folk': 20, 'rock': 42 }
-
-    :param list albums: albums' data
-    :returns: genre stats
-    :rtype: dict
-    """
     stats = {}
     for lines in albums:
         if lines[3] not in stats:
@@ -40,19 +23,21 @@ def get_longest_album(albums):
     :returns: longest album
     :rtype: list
     """
-
+    time = []
+    for lines in albums:
+        minutes = int(lines[4].split(':')[0]) * 60
+        time.append(minutes + int(lines[4].split(':')[1]))
+    max = 0
+    for k in time:
+        if k > max:
+            max = k
+    for l, maxtime in enumerate(time):
+        if time[l] == max:
+            return albums[l]
+    
 
 
 def get_last_oldest(albums):
-    """
-    Get last album with earliest release year.
-    If there is more than one album with earliest release year return the last
-    one of them (by original list's order)
-
-    :param list albums: albums' data
-    :returns: last oldest album
-    :rtype: list
-    """
     min = 3000
     for lines in albums:
         if int(lines[2]) < min:
@@ -62,14 +47,6 @@ def get_last_oldest(albums):
 
 
 def get_last_oldest_of_genre(albums, genre):
-    """
-    Get last album with earliest release year in given genre
-
-    :param list albums: albums' data
-    :param str genre: genre to filter albums by
-    :returns: last oldest album in genre
-    :rtype: list
-    """
     filtered = [(lines) for lines in albums if genre in lines]
     min = 3000
     for lines in filtered:
@@ -89,4 +66,8 @@ def get_total_albums_length(albums):
     :returns: total albums' length in minutes
     :rtype: float
     """
-    
+    time = []
+    for lines in albums:
+        minutes = int(lines[4].split(':')[0]) * 60
+        time.append(minutes + int(lines[4].split(':')[1]))
+    return sum(time)/60

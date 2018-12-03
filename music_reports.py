@@ -10,6 +10,8 @@ def get_albums_by_genre(albums, genre):
     :returns: all albums of given genre
     :rtype: list
     """
+    albums_by_genre = [lines for lines in albums if genre == lines[3]]
+    return albums_by_genre
 
 
 def get_genre_stats(albums):

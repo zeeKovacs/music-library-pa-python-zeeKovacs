@@ -10,7 +10,9 @@ def get_albums_by_genre(albums, genre):
     :returns: all albums of given genre
     :rtype: list
     """
-    return [lines for lines in albums if genre == lines[3]]
+    if any(genre in line for line in albums):
+        return [lines for lines in albums if genre == lines[3]]
+    raise ValueError('Wrong genre')
 
 
 def get_genre_stats(albums):
@@ -38,6 +40,7 @@ def get_longest_album(albums):
     :returns: longest album
     :rtype: list
     """
+
 
 
 def get_last_oldest(albums):
@@ -86,3 +89,4 @@ def get_total_albums_length(albums):
     :returns: total albums' length in minutes
     :rtype: float
     """
+    

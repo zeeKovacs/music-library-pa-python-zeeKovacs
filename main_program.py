@@ -29,7 +29,6 @@ def main():
     make the code cleaner
     """
     albums = file_handling.import_data(filename='albums_data.txt')
-    print(albums)
     display.print_program_menu(['Delete Album by Artist and Album', 'Albums by Genre', 'Genre Stats', 'Last Oldest Album', 'Oldest of Genre'])
     while True:
         try:
